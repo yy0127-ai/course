@@ -2,7 +2,6 @@ package com.course.system.service;
 
 import com.course.system.domain.Test;
 import com.course.system.mapper.TestMapper;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
