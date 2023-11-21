@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/login.vue'
 import Admin from './views/admin.vue'
+import Welcome from './views/admin/welcome.vue'
 
 Vue.use(Router);
 export default new Router({
@@ -12,9 +13,13 @@ export default new Router({
     redirect: "/login",
   },{
     path: '/login',  //如果子路由是/login 则加载的是Login组件
-    component: Login
+    component: Login,
   },{
     path: '/admin',
-    component: Admin
+    component: Admin,
+    children: [{
+      path: 'welcome',
+      component: Welcome,
+    }]
   }]
 })
