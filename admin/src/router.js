@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/login.vue'
+import Admin from './views/admin.vue'
 
 Vue.use(Router);
 export default new Router({
@@ -12,5 +13,8 @@ export default new Router({
   },{
     path: '/login',  //如果子路由是/login 则加载的是Login组件
     component: Login
+  },{
+    path: '/admin',
+    component: Admin
   }]
 })
