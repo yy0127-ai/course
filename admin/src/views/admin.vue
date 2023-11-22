@@ -473,8 +473,21 @@
   export default {
     name: 'admin',
     mounted() {
+      let _this = this;
       $('body').removeClass('login-layout light-login');
-      $('body').attr('class', 'no-skin')
+      $('body').attr('class', 'no-skin');
+      _this.activeSidebar(_this.$route.name.replace("/","-") + "-sidebar");//
+    },
+    watch: {
+      $route: { //此时只能监听到admin页面中的路由跳转  无法监听到从login页面跳转到welcom页面，所以初始化的时候在来一次
+        handler:function (val, oldVal) {
+          console.log("---->页面跳转：",val, oldVal);
+          let _this = this;
+          _this.$nextTick(function () {//页面加载完成后执行
+            _this.activeSidebar(_this.$route.name.replace("/","-") + "-sidebar");
+          })
+        }
+      }
     },
     methods: {
       activeSidebar: function (id) {
