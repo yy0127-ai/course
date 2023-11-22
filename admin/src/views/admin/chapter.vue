@@ -149,7 +149,7 @@
     methods: {
       list() {
         let _this = this;
-        _this.$ajax.get('http://127.0.0.1:9002/business/admin/chapter/list')
+        _this.$ajax.get('http://127.0.0.1:9000/business/admin/chapter/list')
           .then(response=>{
           console.log("章列表查询返回的结果为", response);
           _this.chapters = response.data;
