@@ -12,5 +12,5 @@
     },
     methods: {
     }
-}
+  }
 </script>
