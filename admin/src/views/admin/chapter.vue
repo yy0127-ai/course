@@ -72,7 +72,7 @@
     </tr>
     <tr v-for="chapter in chapters">
       <td>{{chapter.id}}</td>
-      <td>{{chapters.name}}</td>
+      <td>{{chapter.name}}</td>
       <td>{{chapter.courseId}}</td>
 
       <td>

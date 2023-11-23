@@ -4,6 +4,7 @@ import com.course.server.domain.Chapter;
 import com.course.server.domain.ChapterExample;
 import com.course.server.dto.ChapterDto;
 import com.course.server.mapper.ChapterMapper;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,8 @@ public class ChapterService {
     @Resource
     private ChapterMapper chapterMapper;
     public List<ChapterDto> list(){
-        List<Chapter> chapterList = chapterMapper.selectByExample(null);
+        PageHelper.startPage(2, 1);
+        List<Chapter> chapterList = chapterMapper.selectByExample(null); //插件分页语句规则：调用startPage方法之后，执行的第一个select语句就会进行分页
         List<ChapterDto> chapterDtoList = new ArrayList<ChapterDto>();
         for(int i = 0, l = chapterList.size(); i < l; i++){
             Chapter chapter = chapterList.get(i);
