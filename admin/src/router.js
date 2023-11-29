@@ -5,10 +5,10 @@ import Admin from "./views/admin.vue"
 import Welcome from "./views/admin/welcome.vue"
 import Chapter from "./views/admin/chapter.vue"
 
-Vue.use(Router);
+Vue.use(Router); //Vue实例中使用Router插件
 export default new Router({
-  mode: "history",
-  base: process.env.BASE_URL,
+  mode: "history", //路由模式 历史模式 不会带#
+  base: process.env.BASE_URL, //基础路径
   routes: [{
     path: "*",
     redirect: "/login",

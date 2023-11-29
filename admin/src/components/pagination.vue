@@ -46,7 +46,7 @@
   export default {
     name: 'pagination',
     props: {
-      list: {
+      list: {  //函数类型 在父组件中与父组件的list函数绑定，意味着在子组件中可以使用this.list来使用父组件中的list方法
         type: Function,
         default: null
       },
