@@ -31,55 +31,13 @@
 
         <td>
           <div class="hidden-sm hidden-xs btn-group">
-            <button class="btn btn-xs btn-success">
-              <i class="ace-icon fa fa-check bigger-120"></i>
-            </button>
-
-            <button class="btn btn-xs btn-info">
+            <button v-on:click="edit(chapter)" class="btn btn-xs btn-info">
               <i class="ace-icon fa fa-pencil bigger-120"></i>
             </button>
 
             <button class="btn btn-xs btn-danger">
               <i class="ace-icon fa fa-trash-o bigger-120"></i>
             </button>
-
-            <button class="btn btn-xs btn-warning">
-              <i class="ace-icon fa fa-flag bigger-120"></i>
-            </button>
-          </div>
-
-          <div class="hidden-md hidden-lg">
-            <div class="inline pos-rel">
-              <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-              </button>
-
-              <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                <li>
-                  <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                  <span class="blue">
-                                    <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                  </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                  <span class="green">
-                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                  </span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                  <span class="red">
-                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                  </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
         </td>
       </tr>
@@ -139,7 +97,14 @@
     methods: {
       add(){
         let _this = this;
+        _this.chapter = {};
         $("#form-modal").modal("show")
+      },
+      edit(chapter){
+        let _this = this;
+        // _this.chapter = chapter;  //出现问题 在修改的时候 表格同时修改了 但是取消会在变成原来的样子
+        _this.chapter = $.extend({}, chapter);  //jquery的一个方法 先将chapter复制到一个{} 然后对{}进行修改 然后在赋值给要传给后端的数据
+        $('#form-modal').modal("show");//展示出模态框
       },
       list(page) {
         let _this = this;
@@ -165,7 +130,7 @@
             _this.list(1);
           }
         });
-      }
+      },
     }
   }
 </script>
