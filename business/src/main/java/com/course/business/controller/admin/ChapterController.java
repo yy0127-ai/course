@@ -7,9 +7,8 @@ import com.course.server.dto.ResponseDto;
 import com.course.server.service.ChapterService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import sun.rmi.runtime.Log;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -20,7 +19,7 @@ public class ChapterController {
     public static final Logger LOG = LoggerFactory.getLogger(ChapterController.class);
     @Resource
     private ChapterService chapterService;
-    @RequestMapping("/list")
+    @PostMapping("/list")
     public ResponseDto list(@RequestBody PageDto pageDto){
         LOG.info("pageDto: {}",pageDto);
         ResponseDto responseDto = new ResponseDto();
@@ -28,12 +27,19 @@ public class ChapterController {
         responseDto.setContent(pageDto);
         return responseDto;
     }
-    @RequestMapping("/save")
+    @PostMapping("/save")
     public ResponseDto save(@RequestBody ChapterDto chapterDto){
         LOG.info("chapterDto: {}",chapterDto);
         ResponseDto responseDto = new ResponseDto();
         chapterService.save(chapterDto);
         responseDto.setContent(chapterDto);
+        return responseDto;
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseDto del(@PathVariable String id){
+        LOG.info("delete id: {}", id);
+        ResponseDto responseDto = new ResponseDto();
+        chapterService.delete(id);
         return responseDto;
     }
 }

@@ -131,6 +131,9 @@
     font-size: 16px;
     margin-top: 0;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .pagination button {
