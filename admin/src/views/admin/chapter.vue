@@ -108,15 +108,17 @@
       },
       list(page) {
         let _this = this;
+        // Loading.show(); 我没有这个图片 呜呜呜
         _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/list', {
           page: page,
           size: _this.$refs.pagination.size,  //获取子组件，$refs内置变量，根据pagination名字获取
         })
           .then(response=>{
-          console.log("章列表查询返回的结果为", response);
-          let resp = response.data;
-          _this.chapters = resp.content.list;
-          _this.$refs.pagination.render(page, resp.content.total);//重新渲染总条数
+            // Loading.hide();
+            console.log("章列表查询返回的结果为", response);
+            let resp = response.data;
+            _this.chapters = resp.content.list;
+            _this.$refs.pagination.render(page, resp.content.total);//重新渲染总条数
         })
       },
 
