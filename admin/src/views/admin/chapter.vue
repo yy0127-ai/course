@@ -136,14 +136,47 @@
        * @param id
        */
       del(id){
-        let _this = this;
-        _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id).then((response) => {
-          console.log("删除大章列表结果:", response);
-          let resp = response.data;
-          if (resp.success){
-            _this.list(1);
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: "btn btn-success",
+            cancelButton: "btn btn-danger"
+          },
+          buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
+          title: "确认删除吗?",
+          text: "操作不可逆!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "确认!",
+          cancelButtonText: "取消!",
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            let _this = this;
+            _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id).then((response) => {
+              console.log("删除大章列表结果:", response);
+              let resp = response.data;
+              if (resp.success){
+                swalWithBootstrapButtons.fire({
+                  title: "已删除!",
+                  text: "信息已被删除",
+                  icon: "success"
+                });
+                _this.list(1);
+              }
+            })
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire({
+              title: "取消",
+              text: "已取消删除",
+              icon: "error"
+            });
           }
-        })
+        });
       },
     }
   }
