@@ -128,6 +128,7 @@
           if (resp.success){
             $("#form-modal").modal("hide");
             _this.list(1);
+            toast.success("保存成功")
           }
         });
       },
@@ -158,23 +159,10 @@
               console.log("删除大章列表结果:", response);
               let resp = response.data;
               if (resp.success){
-                swalWithBootstrapButtons.fire({
-                  title: "已删除!",
-                  text: "信息已被删除",
-                  icon: "success"
-                });
                 _this.list(1);
+                toast.success("删除成功！")
               }
             })
-          } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-          ) {
-            swalWithBootstrapButtons.fire({
-              title: "取消",
-              text: "已取消删除",
-              icon: "error"
-            });
           }
         });
       },
