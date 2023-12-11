@@ -33,6 +33,9 @@ public class ChapterService {
         pageDto.setList(chapterDtoList);
     }
 
+    /**
+     * 保存
+     */
     public void save(ChapterDto chapterDto){
         Chapter chapter = CopyUtil.copy(chapterDto, Chapter.class);
         if (StringUtils.isEmpty(chapterDto.getId())){
@@ -41,13 +44,25 @@ public class ChapterService {
             this.update(chapter);
         }
     }
+
+    /**
+     * 插入
+     */
     private void insert(Chapter chapter){
         chapter.setId(UuidUtil.getShortUuid());
         chapterMapper.insert(chapter);
     }
+
+    /**
+     * 更新
+     */
     private void update(Chapter chapter){
         chapterMapper.updateByPrimaryKey(chapter);
     }
+
+    /**
+     * 删除
+     */
     public void delete(String id){
         chapterMapper.deleteByPrimaryKey(id);
     }
