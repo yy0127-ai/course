@@ -1,4 +1,4 @@
-package com.course.business.controller.admin;
+package com.course.${module}.controller.admin;
 
 import com.course.server.domain.${Domain};
 import com.course.server.dto.${Domain}Dto;
@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("/admin/${domain}")
 public class ${Domain}Controller {
     public static final Logger LOG = LoggerFactory.getLogger(${Domain}Controller.class);
-    public static final String BUSINESS_NAME = "大章";
+    public static final String BUSINESS_NAME = "${tableNameCn}";
     @Resource
     private ${Domain}Service ${domain}Service;
     @PostMapping("/list")
