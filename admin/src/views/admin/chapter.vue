@@ -115,7 +115,6 @@
         })
           .then(response=>{
             // Loading.hide();
-            console.log("章列表查询返回的结果为", response);
             let resp = response.data;
             _this.chapters = resp.content.list;
             _this.$refs.pagination.render(page, resp.content.total);//重新渲染总条数
@@ -130,7 +129,6 @@
           return;
         }
         _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/save', _this.chapter).then((response)=>{
-          console.log("保存大章", response);
           let resp = response.data;
           if (resp.success){
             $("#form-modal").modal("hide");
@@ -149,7 +147,6 @@
         let _this = this;
         Confirm.show("确认删除吗?", function () {
           _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id).then((response) => {
-            console.log("删除大章列表结果:", response);
             let resp = response.data;
             if (resp.success){
               _this.list(1);
