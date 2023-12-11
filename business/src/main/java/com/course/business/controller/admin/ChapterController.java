@@ -9,6 +9,7 @@ import com.course.server.service.ChapterService;
 import com.course.server.util.ValidatorUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import sun.rmi.runtime.Log;
 
@@ -19,6 +20,7 @@ import java.util.List;
 @RequestMapping("/admin/chapter")
 public class ChapterController {
     public static final Logger LOG = LoggerFactory.getLogger(ChapterController.class);
+    public static final String BUSINESS_NAME = "大章";
     @Resource
     private ChapterService chapterService;
     @PostMapping("/list")
