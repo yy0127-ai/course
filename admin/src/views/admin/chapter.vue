@@ -154,34 +154,6 @@
             }
           })
         })
-        // const swalWithBootstrapButtons = Swal.mixin({
-        //   customClass: {
-        //     confirmButton: "btn btn-success",
-        //     cancelButton: "btn btn-danger"
-        //   },
-        //   buttonsStyling: false
-        // });
-        // swalWithBootstrapButtons.fire({
-        //   title: "确认删除吗?",
-        //   text: "操作不可逆!",
-        //   icon: "warning",
-        //   showCancelButton: true,
-        //   confirmButtonText: "确认!",
-        //   cancelButtonText: "取消!",
-        //   reverseButtons: true
-        // }).then((result) => {
-        //   if (result.isConfirmed) {
-        //     let _this = this;
-        //     _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id).then((response) => {
-        //       console.log("删除大章列表结果:", response);
-        //       let resp = response.data;
-        //       if (resp.success){
-        //         _this.list(1);
-        //         Toast.success("删除成功！")
-        //       }
-        //     })
-        //   }
-        // });
       },
     }
   }
