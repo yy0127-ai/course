@@ -109,7 +109,7 @@
       list(page) {
         let _this = this;
         // Loading.show(); 我没有这个图片 呜呜呜
-        _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/list', {
+        _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/chapter/list', {
           page: page,
           size: _this.$refs.pagination.size,  //获取子组件，$refs内置变量，根据pagination名字获取
         })
@@ -128,7 +128,7 @@
           || !Validator.length(_this.chapter.courseId, "课程ID", 1, 8)){
           return;
         }
-        _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/save', _this.chapter).then((response)=>{
+        _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/chapter/save', _this.chapter).then((response)=>{
           let resp = response.data;
           if (resp.success){
             $("#form-modal").modal("hide");
@@ -146,7 +146,7 @@
       del(id){
         let _this = this;
         Confirm.show("确认删除吗?", function () {
-          _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id).then((response) => {
+          _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/chapter/delete/' + id).then((response) => {
             let resp = response.data;
             if (resp.success){
               _this.list(1);
