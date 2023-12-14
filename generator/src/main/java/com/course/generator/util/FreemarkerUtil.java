@@ -12,12 +12,12 @@ import java.io.IOException;
 import java.util.Map;
 
 public class FreemarkerUtil {
-    static String fltPath = "generator\\src\\main\\java\\com\\course\\generator\\ftl\\";
+    static String ftlPath = "generator\\src\\main\\java\\com\\course\\generator\\ftl\\";
     static Template temp;
     public static void initConfig(String ftlName) throws IOException {
         //读模板
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_29);
-        cfg.setDirectoryForTemplateLoading(new File(fltPath));
+        cfg.setDirectoryForTemplateLoading(new File(ftlPath));
         cfg.setObjectWrapper(new DefaultObjectWrapper(Configuration.VERSION_2_3_29));
         temp = cfg.getTemplate(ftlName);
     }
