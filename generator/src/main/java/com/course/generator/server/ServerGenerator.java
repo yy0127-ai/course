@@ -17,8 +17,8 @@ import java.util.*;
 
 public class ServerGenerator {
     static String MODULE = "business";
-//    static String toServicePath = "server\\src\\main\\java\\com\\course\\server\\service\\";
-    static String toControllerPath = MODULE + "\\src\\main\\java\\com\\course\\" + MODULE + "\\controller\\admin\\";
+    static String toServicePath = "server\\src\\main\\java\\com\\course\\server\\service\\";
+//    static String toControllerPath = MODULE + "\\src\\main\\java\\com\\course\\" + MODULE + "\\controller\\admin\\";
 //    static String toDtoPath = "server\\src\\main\\java\\com\\course\\server\\dto\\";
 
     static String generatorConfigPath = "server\\src\\main\\resources\\generator\\generatorConfig.xml";
@@ -62,10 +62,10 @@ public class ServerGenerator {
         // 生成dto
 //        FreemarkerUtil.initConfig("dto.ftl");
 //        FreemarkerUtil.generator(toDtoPath + Domain + "Dto.java", map);
-//        FreemarkerUtil.initConfig("service.ftl");
-//        FreemarkerUtil.generator(toServicePath + Domain + "Service.java", map);
-        FreemarkerUtil.initConfig("controller.ftl");
-        FreemarkerUtil.generator(toControllerPath + Domain + "Controller.java", map);
+        FreemarkerUtil.initConfig("service.ftl");
+        FreemarkerUtil.generator(toServicePath + Domain + "Service.java", map);
+//        FreemarkerUtil.initConfig("controller.ftl");
+//        FreemarkerUtil.generator(toControllerPath + Domain + "Controller.java", map);
 //        FreemarkerUtil.initConfig("controller.ftl");
 //        FreemarkerUtil.generator(toDtoPath + Domain + "Controller.java", map);
     }
