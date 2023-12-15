@@ -27,6 +27,8 @@
         <th>操作</th>
       </tr>
       </thead>
+
+
       <tbody>
       <tr v-for="section in sections">
           <td>{{section.id}}</td>
@@ -181,6 +183,15 @@
 
       save(){
         let _this = this;
+        //保存校验
+        if (1 != 1
+                || !Validator.require(_this.section.title, "标题")
+                || !Validator.length(_this.section.title, "标题", 1, 50)
+                || !Validator.length(_this.section.video, "视频", 1, 200)
+        ) {
+          return;
+        }
+
         _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/section/save', _this.section).then((response)=>{
           let resp = response.data;
           if (resp.success){

@@ -57,12 +57,14 @@ public class DbUtil {
         Connection conn = getConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("show full columns from `" + tableName + "`");
+        //通过上面的sql可以查询到该表的Field(也就是字段名) Type(字段类型) Null(字段是否能为空YES or NO) Comment(字段中文名称)
         if (rs != null) {
             while(rs.next()) {
-                String columnName = rs.getString("Field");
-                String type = rs.getString("Type");
-                String comment = rs.getString("Comment");
-                Field field = new Field();
+                String columnName = rs.getString("Field"); //字段名称
+                String type = rs.getString("Type");//字段类型
+                String comment = rs.getString("Comment");//字段的中文名，也就是创建表的时候自己为每一个字段定义的重命名
+                String nullAble = rs.getString("Null"); //YES NO 获取字段的Null，为YES可以为空，为NO不可以为空
+                Field field = new Field();//此Field是将数据库中的每一行字段，转换成java中的Field对象，其中包括该字段的名称、小驼峰、大驼峰、类型、变成java的类型、comment等
                 field.setName(columnName);
                 field.setNameHump(lineToHump(columnName));
                 field.setNameBigHump(lineToBigHump(columnName));
@@ -74,6 +76,18 @@ public class DbUtil {
                 } else {
                     field.setNameCn(comment);
                 }
+                //设置字段是否能为空
+                field.setNullAble("YES".equals(nullAble));
+                if (type.toUpperCase().contains("varchar".toUpperCase())) {
+                    //这里之定义varchar类型的长度，因为char类型虽然也有长度，但一般用于固定长度的字段，
+                    // 常见的有id字段和枚举字段，id字段不需要校验，枚举字段界面一般会有下拉框，不是手输的，不用校验
+                    String lengthStr = type.substring(type.indexOf("(") + 1, type.length() - 1);
+                    field.setLength(Integer.valueOf(lengthStr));
+                }else {
+                    field.setLength(0);//不是所有类型都要有这个length，比如日期类型
+                }
+
+
                 fieldList.add(field);
             }
         }
